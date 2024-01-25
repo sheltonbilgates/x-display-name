@@ -9,16 +9,17 @@ const Displayname = () => {
 
 //   console.log("first=", first, "last=", last);
 
-    const handleSubmit = () =>{
-        const flname = `${first} ${last}`
-        setFirstLast(flname)
-        
-    }
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const flname = `${first} ${last}`;
+    setFirstLast(flname);
+    setSubmit(true);
+}
     // console.log(firstlast);
   return (
     <div className="font-serif p-5">
       <h1 className="font-bold text-5xl">Full Name Display</h1>
-      <form >
+      <form onSubmit={handleSubmit}>
         <br />
         <label >
           First Name: <input value={first} onChange={(e)=> setFirst(e.target.value)}  className="outline" type="text" required />
@@ -30,11 +31,7 @@ const Displayname = () => {
         </label>
         <br />
         <br />
-        <button onClick={(e)=> {
-            e.preventDefault()
-            handleSubmit()
-            setSubmit(true)
-        }}  className="outline ml-8 w-20">Submit</button>
+        <button type="submit"  className="outline ml-8 w-20">Submit</button>
       </form>
       <br />
       {(submit ? (
